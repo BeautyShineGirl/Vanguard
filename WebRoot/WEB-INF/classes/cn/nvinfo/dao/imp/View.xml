@@ -127,16 +127,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				and v.name like '%${viewName}%'
 		</if>
 		<if test=" level !=null and level!=''">
-				and v.level like '%${level}%'
+				and v.level like '${level}'
 		</if>
 		<if test=" viewType!=null and viewType!=''">
 				and v.type like '%${viewType}%'
 		</if>
 		<if test=" province !=null and province!=''">
-				and v.province like '%${province}%'
+				and v.province like '${province}'
 		</if>
 		<if test=" city !=null and city!=''">
-				and v.city like '%${city}%'
+				and v.city like '${city}'
 		</if>
   	</sql>
 
@@ -156,6 +156,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	<!-- //修改图片路径	2017-12-25	杨立 -->
   	<update id="updateUrl" parameterType="cn.nvinfo.domain.ViewMessage" useGeneratedKeys="true">
   		update viewMessage set picture=#{newUrl} where random_no=#{random_no}
+  	</update>
+  	
+  	<!--//修改二维码图片路径	2018-01-12	杨立 -->
+  	<update id="updateView_img" parameterType="cn.nvinfo.domain.ViewMessage" useGeneratedKeys="true">
+  		update viewMessage set view_img=#{view_img} where random_no=#{random_no}
   	</update>
   		<!-- 从字典表中获得景区分类  	 杨立   2017-09-19-->
   	<select id="getViewType" resultType="java.lang.String">
@@ -186,13 +191,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	<select id="getByStaffId" resultType="java.lang.String">
   	select name from staff  where id=#{staffId}
   	</select>
-  	
+  		<!-- 修改的数据回显   	杨立	2017-09-21 -->
+  	<select id="getById" resultType="cn.nvinfo.domain.ViewMessage">
+  		select id, random_no,staff_id staffId,name,level,type,remark, address,businessTime,phone,reminder,discount,
+  		busMessage,selfRoute,picture,lng,lat,province,city,sort,staffName,tinyPrice,tag1,tag2,tag3,tag4 from viewMessage where id=#{id}
+  	</select>
   	<!-- 修改 	杨立	2017-09-21-->
   	<update id="edit" parameterType="cn.nvinfo.domain.ViewMessage" useGeneratedKeys="true">
   		update viewMessage set staff_id=#{staffId},name=#{name},level=#{level},type=#{type},remark=#{remark},
   		address=#{address},businessTime=#{businessTime},phone=#{phone},reminder=#{reminder},discount=#{discount},
   		busMessage=#{busMessage},selfRoute=#{selfRoute},lng=#{lng},lat=#{lat},province=#{province},
-  		city=#{city},sort=#{sort},staffName=#{staffName} where random_no=#{random_no} 
+  		city=#{city},sort=#{sort},staffName=#{staffName},tinyPrice=#{tinyPrice},tag1=#{tag1},tag2=#{tag2},tag3=#{tag3},tag4=#{tag4} where random_no=#{random_no} 
   	</update>
   	<!-- 删除   杨立   2017-09-20	-->
   	<delete id="delete" parameterType="cn.nvinfo.domain.ViewMessage">
