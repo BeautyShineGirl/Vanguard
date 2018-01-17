@@ -154,7 +154,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	<!-- 修改的数据回显   	杨立	2017-09-25 -->
   	<select id="getById" resultType="cn.nvinfo.domain.Product">
   		select  p.id,p.view_id as viewId,p.name,p.marketPrice,p.salePrice,p.isSale,p.startTime,
-  		p.endTime,p.num,p.orderTime,p.isCancel,p.notice,p.costInside,p.costOutside,p.remark,p.userType,p.method,v.picture picture,
+  		p.endTime,p.num,p.orderTime,p.isCancel,p.notice,p.costInside,p.costOutside,p.remark,p.userType,p.method,v.picture picture,p.sort,
   		v.remark viewRemark,v.name viewName,v.view_img pro_img 
   		from product p
   		left join viewMessage v on p.view_id=v.id 
@@ -169,7 +169,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	<update id="edit" parameterType="cn.nvinfo.domain.Product" useGeneratedKeys="true">
   		update product set view_id=#{viewId},name=#{name},marketPrice=#{marketPrice},salePrice=#{salePrice},isSale=#{isSale},startTime=#{startTime},
   		endTime=#{endTime},num=#{num},orderTime=#{orderTime},isCancel=#{isCancel},notice=#{notice},costInside=#{costInside},
-  		costOutside=#{costOutside},remark=#{remark},userType=#{userType},method=#{method} where id=#{id} 
+  		costOutside=#{costOutside},remark=#{remark},userType=#{userType},method=#{method},sort=#{sort} where id=#{id} 
   	</update>
   	
   	<!-- 删除   杨立   2017-09-20	-->

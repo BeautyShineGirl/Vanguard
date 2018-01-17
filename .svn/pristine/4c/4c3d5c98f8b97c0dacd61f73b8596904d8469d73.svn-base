@@ -154,7 +154,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	<!-- 修改的数据回显   	杨立	2017-09-25 -->
   	<select id="getById" resultType="cn.nvinfo.domain.Product">
   		select  p.id,p.view_id as viewId,p.name,p.marketPrice,p.salePrice,p.isSale,p.startTime,
-  		p.endTime,p.num,p.orderTime,p.isCancel,p.notice,p.costInside,p.costOutside,p.remark,p.userType,p.method,v.picture picture,p.sort,
+  		p.endTime,p.num,p.orderTime,p.isCancel,p.notice,p.costInside,p.costOutside,p.remark,p.userType,p.method,v.picture picture,
   		v.remark viewRemark,v.name viewName,v.view_img pro_img 
   		from product p
   		left join viewMessage v on p.view_id=v.id 
