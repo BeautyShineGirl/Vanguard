@@ -194,7 +194,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		<!-- 修改的数据回显   	杨立	2017-09-21 -->
   	<select id="getById" resultType="cn.nvinfo.domain.ViewMessage">
   		select id, random_no,staff_id staffId,name,level,type,remark, address,businessTime,phone,reminder,discount,
-  		busMessage,selfRoute,picture,lng,lat,province,city,sort,staffName,tinyPrice,tag1,tag2,tag3,tag4 from viewMessage where id=#{id}
+  		busMessage,selfRoute,picture,lng,lat,province,city,sort,staffName,view_img,tinyPrice,tag1,tag2,tag3,tag4 from viewMessage where id=#{id}
   	</select>
   	<!-- 修改 	杨立	2017-09-21-->
   	<update id="edit" parameterType="cn.nvinfo.domain.ViewMessage" useGeneratedKeys="true">
