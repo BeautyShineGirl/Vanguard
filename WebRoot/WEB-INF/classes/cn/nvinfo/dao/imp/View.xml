@@ -182,6 +182,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		select value from dictionary where sort=6
   	</select>
   	
+  	<!-- //从字典中获得景区属性集合	yangli 2018-02-06-->
+  	<select id="getViewLogic" resultType="cn.nvinfo.tools.INList">
+  		select id id,value name from dictionary where sort=13
+  	</select>
+  	
   	<!-- 从字典中获得城市集合 	 杨立   2017-09-20-->
   	<select id="getStaff" resultType="cn.nvinfo.domain.User">
   		select id,name from staff 
@@ -193,15 +198,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	</select>
   		<!-- 修改的数据回显   	杨立	2017-09-21 -->
   	<select id="getById" resultType="cn.nvinfo.domain.ViewMessage">
-  		select id, random_no,staff_id staffId,name,level,type,remark, address,businessTime,phone,reminder,discount,
-  		busMessage,selfRoute,picture,lng,lat,province,city,sort,staffName,view_img,tinyPrice,tag1,tag2,tag3,tag4 from viewMessage where id=#{id}
+  		select v.id, v.random_no,v.staff_id staffId,v.name,v.level,v.type,v.remark, v.address,v.businessTime,v.phone,v.reminder,v.discount,
+  		v.busMessage,v.selfRoute,v.picture,v.lng,v.lat,v.province,v.city,v.sort,v.staffName,v.view_img,v.tinyPrice,v.tag1,v.tag2,v.tag3,v.tag4,v.logic, d.value logicName from viewMessage v 
+		left join dictionary d on v.logic=d.id
+		where v.id=#{id}
   	</select>
   	<!-- 修改 	杨立	2017-09-21-->
   	<update id="edit" parameterType="cn.nvinfo.domain.ViewMessage" useGeneratedKeys="true">
   		update viewMessage set staff_id=#{staffId},name=#{name},level=#{level},type=#{type},remark=#{remark},
   		address=#{address},businessTime=#{businessTime},phone=#{phone},reminder=#{reminder},discount=#{discount},
   		busMessage=#{busMessage},selfRoute=#{selfRoute},lng=#{lng},lat=#{lat},province=#{province},
-  		city=#{city},sort=#{sort},staffName=#{staffName},tinyPrice=#{tinyPrice},tag1=#{tag1},tag2=#{tag2},tag3=#{tag3},tag4=#{tag4} where random_no=#{random_no} 
+  		city=#{city},sort=#{sort},staffName=#{staffName},tinyPrice=#{tinyPrice},tag1=#{tag1},tag2=#{tag2},tag3=#{tag3},tag4=#{tag4},logic=#{logic} where random_no=#{random_no} 
   	</update>
   	<!-- 删除   杨立   2017-09-20	-->
   	<delete id="delete" parameterType="cn.nvinfo.domain.ViewMessage">
@@ -226,5 +233,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		left join viewMessage v on pro.view_id=v.id
 		where v.id=#{id}
 		order by pro.sort
+  	</select>
+  	
+  	<!-- // 向页面返回抢购产品景区信息logic=2  	杨立	2018-02-06-->
+  	<select id="getHotView" resultType="cn.nvinfo.domain.ViewMessage">
+		select * from viewMessage where logic=2 group by sort
   	</select>
 </mapper>

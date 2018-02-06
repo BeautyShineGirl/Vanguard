@@ -145,10 +145,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	<!-- 添加  杨立   2017-09-25-->
   	<insert id="save" parameterType="cn.nvinfo.domain.Product" useGeneratedKeys="true">
   		insert into product (view_id, name,marketPrice,salePrice,isSale,startTime,
-  		endTime,num,orderTime,isCancel,notice,costInside,costOutside,remark,userType,method) 
+  		endTime,num,orderTime,isCancel,notice,costInside,costOutside,remark,userType,method,sort) 
   		values(#{viewId},#{name},#{marketPrice},#{salePrice},
   		#{isSale},#{startTime},#{endTime},#{num},#{orderTime},#{isCancel},#{notice},#{costInside},
-  		#{costOutside},#{remark},#{userType},#{method})
+  		#{costOutside},#{remark},#{userType},#{method},#{sort})
   	</insert>
   	
   	<!-- 修改的数据回显   	杨立	2017-09-25 -->

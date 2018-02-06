@@ -5,6 +5,7 @@ import java.util.List;
 import cn.nvinfo.domain.Product;
 import cn.nvinfo.domain.User;
 import cn.nvinfo.domain.ViewMessage;
+import cn.nvinfo.tools.INList;
 
 
 /**
@@ -112,6 +113,10 @@ public interface ViewDao {
 	List<Product> getByIdList(Integer id);
 	//修改二维码图片路径	2018-01-12	杨立
 	int updateView_img(String random_no, String view_img);
+	//从字典中获得景区属性集合	yangli 2018-02-06
+	List<INList> getViewLogic();
+	// 向页面返回抢购产品景区信息logic=2  	杨立	2018-02-06
+	List<ViewMessage> getHotView();
 	
 	
 }
