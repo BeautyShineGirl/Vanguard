@@ -116,7 +116,7 @@ public interface ViewDao {
 	//从字典中获得景区属性集合	yangli 2018-02-06
 	List<INList> getViewLogic();
 	// 向页面返回抢购产品景区信息logic=2  	杨立	2018-02-06
-	List<ViewMessage> getHotView(Integer logic);
+	List<ViewMessage> getHotView();
 	
 	
 }

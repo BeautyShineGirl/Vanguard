@@ -237,6 +237,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	
   	<!-- // 向页面返回抢购产品景区信息logic=2  	杨立	2018-02-06-->
   	<select id="getHotView" resultType="cn.nvinfo.domain.ViewMessage">
-		select * from viewMessage where logic=2 group by sort
+		select * from viewMessage where logic=#{logic} group by sort
   	</select>
 </mapper>
